@@ -1,4 +1,9 @@
-#gameTitle {
+h1 {
     text-align: center;
-    background-color: lightgrey;
-};
+  }
+  
+#blanks {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+  }
