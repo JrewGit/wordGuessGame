@@ -63,7 +63,7 @@ document.onkeyup = function (event) {
     };
 
     //Decrements the lives left if the letter that the user guesses isn't a letter in the computer's guess.
-    if ((lowercaseComputerGuess.indexOf(userGuess) === -1) && (livesLeft > 0) && (wins = false)) {
+    if ((lowercaseComputerGuess.indexOf(userGuess) === -1) && (livesLeft > 0) && (win === false)) {
         livesLeft -= 1;
         updateLives.textContent = livesLeft;
     };
