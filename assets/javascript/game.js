@@ -1,5 +1,5 @@
 //Initiates the starting variables
-var livesLeft = 10;
+var livesLeft = 5;
 var win = false;
 var userLetterGuess = [];
 var blankSpace = [];
@@ -18,20 +18,6 @@ var updateBlanks = document.getElementById("blanks");
 updateBlanks.innerHTML = makeBlankSpace();
 updateLives.textContent = livesLeft;
 
-//resets the game
-function reset() {
-    livesLeft = 10;
-    updateLives.textContent = livesLeft;
-    win = false;
-    userLetterGuess = [];
-    updateLettersGuessed.innerHTML = userLetterGuess;
-    blankSpace = [];
-    updateBlanks.innerHTML = makeBlankSpace();
-    computerChoice = Math.floor(Math.random() * wordList.length);
-    computerGuess = wordList[computerChoice];
-    console.log(computerGuess);
-}
-
 //prints the blank spaces on the screen as soon as the document is shown.
 function makeBlankSpace() {
     for (var i = 0; i < computerGuess.length; i++) {
@@ -43,6 +29,24 @@ function makeBlankSpace() {
     };
     return blankSpace.join(" ");
 };
+
+//resets the game
+function reset() {
+    livesLeft = 5;
+    updateLives.textContent = livesLeft;
+    win = false;
+    userLetterGuess = [];
+    updateLettersGuessed.innerHTML = userLetterGuess;
+    computerChoice = Math.floor(Math.random() * wordList.length);
+    computerGuess = wordList[computerChoice];
+    uppercaseComputerGuess = computerGuess.toUpperCase();
+    lowercaseComputerGuess = computerGuess.toLowerCase();
+    blankSpace = [];
+    updateBlanks.innerHTML = makeBlankSpace();
+    updateWinStatement.textContent = "";
+    updateLossStatement.textContent = "";
+    console.log(computerGuess);
+}
 
 document.onkeyup = function (event) {
 
@@ -56,9 +60,9 @@ document.onkeyup = function (event) {
 
     //Checks to see if the letter that the user guesses is in the comptuer's guess. If it is, then the letter that the user guessed fills in the necessary blanks.
     for (var i = 0; i < computerGuess.length; i++) {
-        if ((userGuess === lowercaseComputerGuess[i] || userGuess === uppercaseComputerGuess[i]) && userGuess !== " ") {
+        if ((userGuess === lowercaseComputerGuess[i] || userGuess === uppercaseComputerGuess[i]) && (userGuess !== " ") && (livesLeft > 0)) {
             blankSpace[i] = computerGuess[i];
-            updateBlanks.textContent = blankSpace.join(" ");
+            updateBlanks.innerHTML = blankSpace.join(" ");
         };
     };
 
@@ -77,7 +81,7 @@ document.onkeyup = function (event) {
     };
 
     //Prints win statement if there are no more blank spaces.
-    if (blankSpace.indexOf("_") === -1) {
+    if ((blankSpace.indexOf("_") === -1) && (livesLeft > 0)) {
         win = true;
         updateWinStatement.textContent = "You did it! Hit 'Space' to play again";
         if (userGuess === " ") {
