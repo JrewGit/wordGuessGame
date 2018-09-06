@@ -1,9 +1,50 @@
+body {
+  background-color: black;
+}
+
+.container {
+  background-color: black;
+  height: 100vh;
+  position: relative;
+}
+
 h1 {
-    text-align: center;
-  }
-  
+  text-align: center;
+  color: #FF0000; 
+}
+
+
+h4 {
+  color: #00FFFF;
+}
+
+p {
+  font-size: 1.25em;
+  color: #00FF00; 
+}
+
+h1, h4, p {
+  font-family: 'Permanent Marker', cursive;
+}
+
+.toDo {
+  margin-top: 5vh;
+}
+
+.main {
+  margin-top: 10vh;
+}
+
+
+.blanksBox {
+/* background-color: white;
+position: absolute;
+left: 50%;
+bottom: 0; */
+}
+
 #blanks {
-    text-align: center;
-    font-size: 50px;
-    font-weight: bold;
-  }
+  text-align: center;
+  font-size: 3.125em;
+  font-weight: bold;
+}
