@@ -1,5 +1,5 @@
 //Initiates the starting variables
-var livesLeft = 5;
+var livesLeft = 10;
 var win = false;
 var userLetterGuess = [];
 var blankSpace = [];
@@ -8,7 +8,7 @@ var computerChoice = Math.floor(Math.random() * wordList.length);
 var computerGuess = wordList[computerChoice];
 var uppercaseComputerGuess = computerGuess.toUpperCase();
 var lowercaseComputerGuess = computerGuess.toLowerCase();
-var images = ["https://qph.fs.quoracdn.net/main-qimg-f2b92b861436a17b7b5b24ef13e15ac7-c","https://i.ytimg.com/vi/VS3pCtH5A8M/maxresdefault.jpg","https://images-na.ssl-images-amazon.com/images/I/91ws9GU7ZCL._SL1500_.jpg","https://images-na.ssl-images-amazon.com/images/I/71jos2ODTuL._RI_.jpg", "https://images-na.ssl-images-amazon.com/images/I/814BEhT9BKL._RI_.jpg", "https://upload.wikimedia.org/wikipedia/en/7/72/All_That_-_logo.png", "https://is5-ssl.mzstatic.com/image/thumb/Video/v4/d1/6f/6e/d16f6e8a-621e-fe23-e926-888ac373a057/source/1200x630bb.jpg", "https://images-na.ssl-images-amazon.com/images/I/51BJ45PWN4L._SY445_.jpg", "https://images-na.ssl-images-amazon.com/images/I/61ZMIHf6vnL._SY445_.jpg", "http://www.everybodylovesray.com/wp-content/uploads/2017/01/elr-hp.jpg"]
+var images = ["https://qph.fs.quoracdn.net/main-qimg-f2b92b861436a17b7b5b24ef13e15ac7-c","https://i.ytimg.com/vi/VS3pCtH5A8M/maxresdefault.jpg","https://images-na.ssl-images-amazon.com/images/I/91ws9GU7ZCL._SL1500_.jpg","https://images-na.ssl-images-amazon.com/images/I/71jos2ODTuL._RI_.jpg", "https://images-na.ssl-images-amazon.com/images/I/814BEhT9BKL._RI_.jpg", "https://upload.wikimedia.org/wikipedia/en/7/72/All_That_-_logo.png", "https://is5-ssl.mzstatic.com/image/thumb/Video/v4/d1/6f/6e/d16f6e8a-621e-fe23-e926-888ac373a057/source/1200x630bb.jpg", "https://images-na.ssl-images-amazon.com/images/I/51BJ45PWN4L._SY445_.jpg", "https://images-na.ssl-images-amazon.com/images/I/61ZMIHf6vnL._SY445_.jpg", "http://www.everybodylovesray.com/wp-content/uploads/2017/01/elr-hp.jpg"];
 
 //Grabs the HTML and connects the javascript
 var updateWinStatement = document.getElementById("winStatement");
@@ -64,6 +64,7 @@ function reset() {
 document.onkeyup = function (event) {
 
     var userGuess = event.key;
+    // userGuess = event.key.toLowerCase();
 
 
     //updates the array of letters that the user guessed so far.
@@ -87,14 +88,13 @@ document.onkeyup = function (event) {
     };
 
     //Prints loss statement if lives === 0.
-    if ((livesLeft === 0)) {
-        showPicture(images[computerChoice],300,300,computerGuess);
+    if ((livesLeft === 0)) {    
         updateLossStatement.textContent = "Oooo, so close! The show was '" + computerGuess + "'. Hit 'Space' to try again";
+        ifshowPicture(images[computerChoice],300,300,computerGuess);
         if (userGuess === " ") {
             reset();
         }
     };
-
 
     //Prints win statement if there are no more blank spaces.
     if ((blankSpace.indexOf("_") === -1) && (livesLeft > 0)) {
